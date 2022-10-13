@@ -10,7 +10,7 @@ import okhttp3.Response
 class NetworkInterceptor(context: Context) : Interceptor {
     val appContext = context.applicationContext
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (isNetworkAvailable()) {
+        if (!isNetworkAvailable()) {
             throw NetWorkException("Please check your internet connection")
         }
         return chain.proceed(chain.request())

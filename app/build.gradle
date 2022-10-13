@@ -26,6 +26,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        buildTypes.each {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+            def apiKey = properties.getProperty("apiKey", "")
+
+            it.buildConfigField 'String', "APIKEY", apiKey
+            it.resValue 'string', "apiKey", apiKey
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -78,10 +87,10 @@ dependencies {
     //implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
     //Room Db
-    implementation"androidx.room:room-runtime:2.3.0"
+    implementation "androidx.room:room-runtime:2.3.0"
     // To use Kotlin annotation processing tool (kapt)
-    kapt"androidx.room:room-compiler:2.3.0"
-    implementation"androidx.room:room-ktx:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
 
     //Kotlin coruotines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"

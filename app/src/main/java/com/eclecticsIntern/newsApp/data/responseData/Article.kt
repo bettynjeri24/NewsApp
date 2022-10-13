@@ -1,6 +1,5 @@
 package com.eclecticsIntern.newsApp.data.responseData
 
-
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -28,8 +27,8 @@ data class Article(
     @SerializedName("url")
     val url: String,
     @SerializedName("urlToImage")
-    val urlToImage: String,
+    val urlToImage: String
 ) {
     @PrimaryKey(autoGenerate = true)
-    var articleID:Int = MAIN_ID
+    var articleID: Int = MAIN_ID
 }
